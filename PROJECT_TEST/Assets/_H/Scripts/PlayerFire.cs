@@ -20,8 +20,7 @@ public class PlayerFire : MonoBehaviour
     {
         //마우스 왼쪽버튼 or 왼쪽컨트롤 키
         if (Input.GetButtonDown("Fire1")) // inputManager안에 이미 setting 되어있음
-        {
-
+        { 
             //총알공장(총알프리팹)에서 총알을 무한대로 찍어낼 수 있다
             //Instantiate()함수로 프리팹 파일을 게임오브젝트로 만든다
 
@@ -32,6 +31,7 @@ public class PlayerFire : MonoBehaviour
             // bullet.transform.position = transform.position;
             // bullet.transform.position = firePoint.transform.position;
             bullet.transform.position = firePoint.position;
+           
         }
         
         //or

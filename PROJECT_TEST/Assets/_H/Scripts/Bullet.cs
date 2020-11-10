@@ -31,5 +31,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         //gameObject-> 이 아이도 자주 사용하는 거라 소문자로 만들어져 있다.
     }
+
+
 }
 
