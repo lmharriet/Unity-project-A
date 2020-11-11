@@ -8,7 +8,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    public GameObject enemyBullet;
+    public Transform firePoint;
+    private float count;
+    public float delay = 1.0f;
 
 
     //에너미의 역할?
@@ -23,6 +26,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        count += Time.deltaTime;
+        //총알 생성
+        if(count>delay)
+        {
+            count = 0;
+            Instantiate(enemyBullet, firePoint.position, Quaternion.identity);
+        }
+
+
         //아래로 이동해라
         transform.Translate(Vector3.down * speed * Time.deltaTime);
         
@@ -30,10 +42,13 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //자기자신도 없애고
-        //충돌된 오브젝ㅌ도 없앤다
-        Destroy(gameObject);
-        Destroy(collision.gameObject);
+        if(collision.gameObject.tag == "PlayerBullet")
+        {
+            //자기자신도 없애고
+            //충돌된 오브젝트도 없앤다
+            Destroy(gameObject);
+            //Destroy(gameObject, 2.0f);
+            Destroy(collision.gameObject);
+        }
     }
-
 }
