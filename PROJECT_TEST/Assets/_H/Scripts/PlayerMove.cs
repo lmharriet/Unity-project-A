@@ -65,7 +65,7 @@ public class PlayerMove : MonoBehaviour
         //벡터의 정규화
         //dir.Normalize();
         //transform.Translate(dir * speed * Time.deltaTime);
-
+        
 
 
         //중요
