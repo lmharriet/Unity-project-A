@@ -14,11 +14,9 @@ public class EnemyBullet : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("Player");
-        if (target != null)
-        {
-            dir = target.transform.position - transform.position;
-        }
-        else dir = Vector3.down;
+        
+        dir = target.transform.position - transform.position;
+        //dir = Vector3.down;
     }
 
     // Update is called once per frame
@@ -28,13 +26,13 @@ public class EnemyBullet : MonoBehaviour
         transform.Translate(dir * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(0);
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        //SceneManager.LoadScene(0);
 
-            Destroy(gameObject);
-        }
-    }
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

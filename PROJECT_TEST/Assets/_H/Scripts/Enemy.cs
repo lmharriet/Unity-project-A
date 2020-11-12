@@ -10,10 +10,10 @@ public class Enemy : MonoBehaviour
 {
     public GameObject enemyBullet;
     public Transform firePoint;
-    private float count;
+    public float count;
     public float delay = 1.0f;
 
-
+    public bool isFind = false;
     //에너미의 역할?
     //위에서 아래로 떨어진다.
     //에너미가 플레이어를 향해서 총알을 발사한다
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     {
         count += Time.deltaTime;
         //총알 생성
-        if(count>delay)
+        if (count > delay)
         {
             count = 0;
             Instantiate(enemyBullet, firePoint.position, Quaternion.identity);
@@ -37,18 +37,22 @@ public class Enemy : MonoBehaviour
 
         //아래로 이동해라
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "PlayerBullet")
+        if (collision.gameObject.tag == "PlayerBullet")
         {
             //자기자신도 없애고
             //충돌된 오브젝트도 없앤다
             Destroy(gameObject);
             //Destroy(gameObject, 2.0f);
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
         }
     }
 }

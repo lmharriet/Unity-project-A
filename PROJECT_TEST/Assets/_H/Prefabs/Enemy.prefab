@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8733165878465488138}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6690054804529330932}
   m_Layer: 9
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,9 @@ MonoBehaviour:
   enemyBullet: {fileID: 6363885231772071615, guid: fea009bd0b2b76c46b8edf87b5dcf125,
     type: 3}
   firePoint: {fileID: 8733165878465488138}
+  count: 0
   delay: 1
+  isFind: 0
   speed: 1
 --- !u!65 &6690054804529330935
 BoxCollider:
@@ -158,4 +160,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1

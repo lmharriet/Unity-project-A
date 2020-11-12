@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject Enemy;
+    public GameObject Boss;
     public Transform minX, maxX;
 
     //private Transform temp;
-
+    
     private float count;
-    public float creatTime = 10.0f;
+    public float creatTime = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +34,7 @@ public class EnemySpawn : MonoBehaviour
 
             Instantiate(Enemy, pos, Quaternion.identity);
         }
+
+   
     }
 }
