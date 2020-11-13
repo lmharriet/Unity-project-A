@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyBullet : MonoBehaviour
 {
-   
+
     private GameObject target;
     Vector3 dir;
     public float speed = 1.0f;
@@ -14,7 +14,7 @@ public class EnemyBullet : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("Player");
-        
+
         dir = target.transform.position - transform.position;
         //dir = Vector3.down;
     }
@@ -26,13 +26,11 @@ public class EnemyBullet : MonoBehaviour
         transform.Translate(dir * speed * Time.deltaTime);
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        //SceneManager.LoadScene(0);
+    private void OnTriggerEnter(Collider other)
+    {
 
-    //        Destroy(gameObject);
-    //    }
-    //}
+        Destroy(gameObject);
+       // Destroy(collision.gameObject);
+
+    }
 }

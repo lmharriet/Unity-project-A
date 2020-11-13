@@ -13,15 +13,26 @@ public class BossBullet : MonoBehaviour
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             //SceneManager.LoadScene(0);
 
             // Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-       
     }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        //SceneManager.LoadScene(0);
+
+    //        // Destroy(collision.gameObject);
+    //        Destroy(gameObject);
+    //    }
+       
+    //}
 }
