@@ -132,6 +132,7 @@ MonoBehaviour:
   delay: 1
   isFind: 0
   speed: 1
+  explosion: {fileID: 100006, guid: 7c442b9b6852b8a4f93306f3d154d471, type: 3}
 --- !u!65 &6690054804529330935
 BoxCollider:
   m_ObjectHideFlags: 0

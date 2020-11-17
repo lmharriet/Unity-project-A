@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     //충돌처리 - Rigidbody 사용 (Rigidbody는 연산처리가 무겁다 그래서 FPS 게임에서는 사용 안할 예정)
     public float speed = 5.0f; //에너미 이동속도
 
+    public GameObject explosion;
 
     //유니티 어트리뷰트 공부하기
 
@@ -49,10 +51,23 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             //Destroy(gameObject, 2.0f);
             Destroy(collision.gameObject);
+
+            //이펙트 보여주기
+            ShowEffect();
+
+            //점수 추가
+            ScoreManager.Instance.AddScore();
         }
         else if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            
         }
+    }
+
+    private void ShowEffect()
+    {
+        GameObject fx = Instantiate(explosion);
+        fx.transform.position = transform.position;
     }
 }
