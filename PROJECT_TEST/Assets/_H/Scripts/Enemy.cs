@@ -52,6 +52,8 @@ public class Enemy : MonoBehaviour
             //Destroy(gameObject, 2.0f);
             Destroy(collision.gameObject);
 
+
+
             //이펙트 보여주기
             ShowEffect();
 
@@ -61,11 +63,11 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            
+            SceneMgr.Instance.LoadScene("StartScene");
         }
     }
-
-    private void ShowEffect()
+    
+private void ShowEffect()
     {
         GameObject fx = Instantiate(explosion);
         fx.transform.position = transform.position;
