@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
     public GameObject bossBullet;
     public GameObject basicBullet;
     public GameObject Explosion;
-    private static int hp = 50;
+    private static int hp = 20;
 
     public float spawnTime = 5.0f;
     private float curTime;   
@@ -20,9 +20,12 @@ public class Boss : MonoBehaviour
         if(other.tag=="PlayerBullet")
         {
             hp -= 1;
+            print(hp);
             showEffect();
 
             if (hp <= 0) Destroy(gameObject);
+
+            Destroy(other.gameObject);
         }
     }
     // Start is called before the first frame update

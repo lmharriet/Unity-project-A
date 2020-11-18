@@ -29,8 +29,21 @@ public class Bullet : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
-        //gameObject-> 이 아이도 자주 사용하는 거라 소문자로 만들어져 있다.
+        if(gameObject.name.Contains("MainBullet"))
+        {
+            //총알 오브젝트는 비활성화 시킨다
+            gameObject.SetActive(false);
+            //오브젝트 풀에 추가만 해준다
+            PlayerFire pf = GameObject.Find("Player").GetComponent<PlayerFire>();
+            pf.bulletPool.Enqueue(gameObject);
+            //Destroy(gameObject);
+            //gameObject-> 이 아이도 자주 사용하는 거라 소문자로 만들어져 있다.
+        }
+
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 

@@ -14,14 +14,14 @@ public class PlayerMove : MonoBehaviour
     //이동속력
     //public-> 인스펙터 창에 변수가 노출된다
     // 기본은 private ->인스펙터 창에 변수가 노출되지 않는다.
-    private int hp = 50;
+    private int hp = 120;
     public float speed = 5.0f;
     public Rigidbody rigid; 
     public float jumpForce;
 
     public Vector2 margin; // viewport 좌표는 0,0 ~ 1,1 사이의 값을 사용하므로 vector2 사용
 
-
+    public VariableJoystick joystick;
 
     float camWidth;
     float camHeight;
@@ -31,7 +31,6 @@ public class PlayerMove : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         hp -= 1;
-        print(hp);
         if(other.tag!="Boss")  Destroy(other.gameObject);
     }
     // Start is called before the first frame update
@@ -144,6 +143,16 @@ public class PlayerMove : MonoBehaviour
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+
+        //조이스틱 사용하기
+        //방향키가 안눌렸을때 =>조이스틱 사용하면 된다
+
+        if(h ==0 && v==0)
+        {
+            h = joystick.Horizontal;
+            v = joystick.Vertical;
+        }
+
         Vector3 dir = new Vector3(h, v, 0);
 
         transform.Translate(dir * speed * Time.deltaTime);

@@ -62,8 +62,11 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-private void ShowEffect()
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+    private void ShowEffect()
     {
         GameObject fx = Instantiate(explosion);
         fx.transform.position = transform.position;

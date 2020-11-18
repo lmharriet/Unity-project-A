@@ -13,10 +13,17 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("Player");
+        if (GameObject.Find("Player") == null)
+        {
+            dir = Vector3.down * 3;
+        }
 
-        dir = target.transform.position - transform.position;
-        //dir = Vector3.down;
+        else
+        {
+            target = GameObject.Find("Player");
+
+            dir = target.transform.position - transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +35,6 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         Destroy(gameObject);
        // Destroy(collision.gameObject);
 
