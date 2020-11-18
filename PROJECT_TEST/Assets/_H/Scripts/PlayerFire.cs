@@ -22,14 +22,10 @@ public class PlayerFire : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
-
-
-
     // Update is called once per frame
     void Update()
     {
         Fire();
-        
     }
 
     private void Fire()

@@ -14,16 +14,16 @@ public class BossBullet : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            //SceneManager.LoadScene(0);
-
-            // Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        //SceneManager.LoadScene(0);
+            
+    //        // Destroy(collision.gameObject);
+    //        Destroy(gameObject);
+    //    }
+    //}
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (collision.gameObject.CompareTag("Player"))

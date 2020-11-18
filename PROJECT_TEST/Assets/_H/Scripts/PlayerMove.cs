@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,8 +14,9 @@ public class PlayerMove : MonoBehaviour
     //이동속력
     //public-> 인스펙터 창에 변수가 노출된다
     // 기본은 private ->인스펙터 창에 변수가 노출되지 않는다.
+    private int hp = 50;
     public float speed = 5.0f;
-    public Rigidbody rigid; //1번 숙제용
+    public Rigidbody rigid; 
     public float jumpForce;
 
     public Vector2 margin; // viewport 좌표는 0,0 ~ 1,1 사이의 값을 사용하므로 vector2 사용
@@ -26,7 +28,12 @@ public class PlayerMove : MonoBehaviour
     float playerHalfWidth;
     float playerHalfHeight;
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        hp -= 1;
+        print(hp);
+        if(other.tag!="Boss")  Destroy(other.gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -141,9 +148,20 @@ public class PlayerMove : MonoBehaviour
 
         transform.Translate(dir * speed * Time.deltaTime);
 
-
+        
         MoveInScreen();
+        Death();
     }
+
+    private void Death()
+    {
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            SceneMgr.Instance.LoadScene("StartScene"); 
+        }
+    }
+
     //void MoveControl()
     //{
     //    float h = Input.GetAxis("Horizontal");
@@ -160,7 +178,7 @@ public class PlayerMove : MonoBehaviour
     //    transform.position = movePosition;
 
     //}
-    
+
 
     //10 NOV 20 과제 review
     void MoveInScreen()

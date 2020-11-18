@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
     //호출되는 이벤트 함수
     //유니티 내부에는 On으로 시작되는 함수는 전부 이벤트 함수들이다
 
+
     private void OnBecameInvisible()
     {
         Destroy(gameObject);

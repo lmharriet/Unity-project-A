@@ -35,8 +35,6 @@ public class Enemy : MonoBehaviour
             count = 0;
             Instantiate(enemyBullet, firePoint.position, Quaternion.identity);
         }
-
-
         //아래로 이동해라
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
@@ -53,7 +51,6 @@ public class Enemy : MonoBehaviour
             Destroy(collision.gameObject);
 
 
-
             //이펙트 보여주기
             ShowEffect();
 
@@ -63,7 +60,6 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            SceneMgr.Instance.LoadScene("StartScene");
         }
     }
     
