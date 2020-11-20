@@ -20,7 +20,6 @@ public class Boss : MonoBehaviour
         if(other.tag=="PlayerBullet")
         {
             hp -= 1;
-            print(hp);
             showEffect();
 
             if (hp <= 0) Destroy(gameObject);

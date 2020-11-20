@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
         }
         //아래로 이동해라
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,6 +58,7 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
+            collision.gameObject.GetComponent<PlayerMove>().GetDamage(1);
             Destroy(gameObject);
         }
     }

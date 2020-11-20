@@ -21,7 +21,7 @@ public class PlayerFire : MonoBehaviour
 
     //오브젝트 풀링
     //오브젝트 풀링에 사용할 최대 총알갯수
-    int poolSize = 5;
+    int poolSize = 20;
     // int fireIndex = 0;
 
     //1. 배열
@@ -131,9 +131,9 @@ public class PlayerFire : MonoBehaviour
         if (bulletPool.Count > 0)
         {
             GameObject bullet = bulletPool.Dequeue();
-            bullet.SetActive(true);
             bullet.transform.position = firePoint.position;
             bullet.transform.up = firePoint.up;
+            bullet.SetActive(true);
         }
         else//오브젝트풀이 비어서 오브젝트가 하나도 없으니 풀크기를 늘려준다
         {

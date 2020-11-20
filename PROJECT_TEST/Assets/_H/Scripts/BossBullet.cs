@@ -13,6 +13,14 @@ public class BossBullet : MonoBehaviour
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.gameObject.GetComponent<PlayerMove>().GetDamage(1);
+            Destroy(gameObject);
+        }
+    }
     private void OnBecameInvisible()
     {
         Destroy(gameObject);

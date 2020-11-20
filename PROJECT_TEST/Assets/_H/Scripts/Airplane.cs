@@ -25,7 +25,7 @@ public class Airplane : MonoBehaviour
     {
         //10NOV20 과제
         count += Time.deltaTime;
-        if (count > 1.0f)
+        if (count > 2.0f)
         {
             count = 0;
             GameObject sBullet = Instantiate(subBullet);

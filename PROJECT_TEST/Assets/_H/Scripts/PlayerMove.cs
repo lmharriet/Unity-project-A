@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     //이동속력
     //public-> 인스펙터 창에 변수가 노출된다
     // 기본은 private ->인스펙터 창에 변수가 노출되지 않는다.
-    private int hp = 120;
+    private int hp = 20;
     public float speed = 5.0f;
     public Rigidbody rigid; 
     public float jumpForce;
@@ -30,8 +30,12 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        hp -= 1;
-        if(other.tag!="Boss")  Destroy(other.gameObject);
+        //if(other.tag!="Boss")  Destroy(other.gameObject);
+    }
+
+    public void GetDamage(int dmg)
+    {
+        hp -= dmg;
     }
     // Start is called before the first frame update
     void Start()

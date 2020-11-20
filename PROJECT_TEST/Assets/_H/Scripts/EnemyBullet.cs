@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour
 {
 
     private GameObject target;
-    Vector3 dir;
+    public Vector3 dir;
     public float speed = 1.0f;
 
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (GameObject.Find("Player") == null)
         {
-            dir = Vector3.down * 3;
+            dir = Vector3.down;
         }
 
         else
@@ -23,6 +23,7 @@ public class EnemyBullet : MonoBehaviour
             target = GameObject.Find("Player");
 
             dir = target.transform.position - transform.position;
+
         }
     }
 
@@ -35,8 +36,15 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-       // Destroy(collision.gameObject);
+        if (other.tag == "Player")
+        {
+            other.gameObject.GetComponent<PlayerMove>().GetDamage(1);
+            Destroy(gameObject);
+        }
+    }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

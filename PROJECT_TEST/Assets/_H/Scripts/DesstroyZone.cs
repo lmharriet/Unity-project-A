@@ -7,7 +7,7 @@ public class DesstroyZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        Destroy(other.gameObject);
         //print(other.gameObject.name);
         // 이곳에서 트리거에 감지된 오브젝트 제거하기(총알,에너미)
         //if (other.tag != "Airplane" && other.tag != "Player")
@@ -30,10 +30,7 @@ public class DesstroyZone : MonoBehaviour
         //    //    pf.bulletPool.Add(other.gameObject);
         //    //}
 
-        //    //충돌된 오브젝트가 총알이라면 총알풀에 추가한다
-
-
-
+        //    //충돌된 오브젝트가 총알이라면 총알풀에 추가한다.
         //}
     }
 }
