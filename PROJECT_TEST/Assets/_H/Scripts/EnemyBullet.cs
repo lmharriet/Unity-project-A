@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
             target = GameObject.Find("Player");
 
             dir = target.transform.position - transform.position;
-
+            dir.Normalize();
         }
     }
 

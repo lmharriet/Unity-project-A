@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
     public GameObject bossBullet;
     public GameObject basicBullet;
     public GameObject Explosion;
-    private static int hp = 20;
+    private static int hp = 50;
 
     public float spawnTime = 5.0f;
     private float curTime;   
@@ -15,22 +15,12 @@ public class Boss : MonoBehaviour
     public float spawnTime0 = 3.0f;
     private float curTime0;
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="PlayerBullet")
-        {
-            hp -= 1;
-            showEffect();
-
-            if (hp <= 0) Destroy(gameObject);
-
-            Destroy(other.gameObject);
-        }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
+        Destroy(other.gameObject);
+        hp -= 1;
+        showEffect();
     }
 
     // Update is called once per frame
@@ -38,10 +28,7 @@ public class Boss : MonoBehaviour
     {
         curTime += Time.deltaTime;
         curTime0 += Time.deltaTime;
-        //if (transform.position.y > 2.0f)
-        //{
-        //    transform.Translate(Vector3.down * speed * Time.deltaTime);
-        //}
+       
         if (curTime > spawnTime)
         {
             curTime = 0;
@@ -56,6 +43,12 @@ public class Boss : MonoBehaviour
         {
             curTime0 = 0;
             Instantiate(basicBullet, transform.position, Quaternion.identity);
+        }
+
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            ScoreManager.Instance.AddBossScore();           
         }
     }
 

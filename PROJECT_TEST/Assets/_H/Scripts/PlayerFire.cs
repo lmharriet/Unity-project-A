@@ -10,15 +10,6 @@ public class PlayerFire : MonoBehaviour
     public Transform firePoint;        // 총알 발사위치
 
 
-    //레이져를 발사하기 위해서는 라인렌더러가 필요하다
-    //레이져와 충돌은 Raycast를 사용해서 판별한다
-    //라인렌더러는 라인만 그려주는 컴포넌트
-    //선은 최소 2개의 점이 필요하다(시작점, 끝점)
-    LineRenderer lr;
-    //일정시간동안 레이져 보여주기
-    public float rayShowTime = 0.3f;
-    float timer = 0.0f;
-
     //오브젝트 풀링
     //오브젝트 풀링에 사용할 최대 총알갯수
     int poolSize = 20;
@@ -42,9 +33,6 @@ public class PlayerFire : MonoBehaviour
     private void Start()
     {
         audio = GetComponent<AudioSource>();
-
-        //라인렌더러 컴포넌트 추가
-        lr = GetComponent<LineRenderer>();
 
         //오브젝트 풀링 초기화
         InitObjectPooling();
@@ -86,7 +74,7 @@ public class PlayerFire : MonoBehaviour
     void Update()
     {
         //Fire();
-        if (lr.enabled) ShowRay();
+        //if (lr.enabled) ShowRay();
     }
 
 
@@ -179,49 +167,5 @@ public class PlayerFire : MonoBehaviour
 
     }
 
-    //파이어 버튼 클릭시
-    public void OnFireButtonClick()
-    {
-        //라인렌더러 컴포넌트 활성화
-        lr.enabled = true;
-        //라인 시작점,끝점 세팅
-        lr.SetPosition(0, firePoint.position);
-        //  lr.SetPosition(1,firePoint.position +Vector3.up *10);
-
-        //Ray로 충돌처리
-        Ray ray = new Ray(transform.position, Vector3.up);
-        RaycastHit hitInfo; // Ray와 충돌된 오브젝트의 정보를 받는다.
-
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            //레이져의 끝점 지정
-            lr.SetPosition(1, hitInfo.point);
-            //충돌된 오브젝트 모두 지우기
-            //Destroy(hitInfo.collider.gameObject);
-            //디스트로이존의 탑과는 충돌처리가 되지 않도록 해야 한다
-
-            //if(hitInfo.collider.name!="Top")
-            //{
-            //    Destroy(hitInfo.collider.gameObject);
-            //}
-
-            //충돌된 에너미 오브젝트 삭제
-            //프리팹으로 만든 오브젝트는 생성될때 클론으로 생성된다
-            //Contains("Enemy")=>Enemy(clone)
-
-            if (hitInfo.collider.name.Contains("Enemy"))
-            {
-                Destroy(hitInfo.collider.gameObject);
-            }
-        }
-    }
-    private void ShowRay()
-    {
-        timer += Time.deltaTime;
-        if (timer > rayShowTime)
-        {
-            lr.enabled = false;
-        }
-    }
 
 }

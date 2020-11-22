@@ -11,6 +11,11 @@ public class Bullet : MonoBehaviour
 
     public float speed = 10.0f;
 
+
+    private void Start()
+    {
+        if(gameObject.name.Contains("MainBullet")) StartCoroutine(coru());
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,6 +51,17 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    IEnumerator coru()
+    {
+        yield return new WaitForSeconds(2f);
 
+        //여기다가 총알 반환
+
+        //총알 오브젝트는 비활성화 시킨다
+        gameObject.SetActive(false);
+        //오브젝트 풀에 추가만 해준다
+        PlayerFire pf = GameObject.Find("Player").GetComponent<PlayerFire>();
+        pf.bulletPool.Enqueue(gameObject);
+    }
 }
 

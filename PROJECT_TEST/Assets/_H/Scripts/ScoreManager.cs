@@ -53,4 +53,9 @@ public class ScoreManager : MonoBehaviour
         ScoreTxt.text = "Score : " + score;
         
     }
+    public void AddBossScore()
+    {
+        score += 20;
+        ScoreTxt.text = "Score : " + score;
+    }
 }
